@@ -1,6 +1,6 @@
 # @digitalbazaar/http-digest-header Changelog
 
-## 2.3.2 -
+## 2.3.2 - 2026-05-24
 ### Added
 - Add TypeScript types to export, and React Native support.
 
