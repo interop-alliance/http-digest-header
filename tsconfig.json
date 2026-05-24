@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "rootDir": "./lib",
+    "outDir": "./types",
+    "strict": false,
+    "checkJs": false,
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "target": "ES2022",
+    "lib": ["ES2022", "DOM"]
+  },
+  "include": ["lib/index.js", "lib/httpDigest.js"]
+}

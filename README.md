@@ -1,8 +1,8 @@
-# HTTP Digest Header Library _(@digitalbazaar/http-digest-header)_
+# HTTP Digest Header Library _(@interop/http-digest-header)_
 
-[![Node.js CI](https://github.com/digitalbazaar/http-digest-header/actions/workflows/main.yml/badge.svg)](https://github.com/digitalbazaar/http-digest-header/actions/workflows/main.yml)
+[![Node.js CI](https://github.com/interop-alliance/http-digest-header/actions/workflows/main.yml/badge.svg)](https://github.com/interop-alliance/http-digest-header/actions/workflows/main.yml)
 
-> JavaScript library (Node.js and browser) for creating and verifying Digest headers for HTTP Signatures
+> JavaScript library (Node.js, browser and React Native) for creating and verifying Digest headers for HTTP Signatures
 
 ## Table of Contents
 
@@ -14,6 +14,11 @@
 - [License](#license)
 
 ## Background
+
+**FORKED FROM**: https://github.com/digitalbazaar/http-digest-header to provide
+support for React Native, and add TypeScript types.
+
+* For React Native use: Peer dependency `crypto-expo` is required. 
 
 Originally, this library was implemented based on the `Digest` header as
 mentioned in **[HTTP Signatures IETF draft](https://tools.ietf.org/html/draft-cavage-http-signatures)**.
@@ -36,13 +41,13 @@ with Node.js).
 To install from `npm`:
 
 ```
-npm install @digitalbazaar/http-digest-header
+npm install @interop/http-digest-header
 ```
 
 To install locally (for development):
 
 ```
-git clone https://github.com/digitalbazaar/http-digest-header.git
+git clone https://github.com/interop-alliance/http-digest-header.git
 cd http-digest-header
 npm install
 ```
@@ -50,7 +55,7 @@ npm install
 ## Usage
 
 ```js
-import * as httpDigest from '@digitalbazaar/http-digest-header';
+import * as httpDigest from '@interop/http-digest-header';
 
 const data = `{"hello": "world"}`;
 
