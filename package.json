@@ -1,6 +1,6 @@
 {
-  "name": "@digitalbazaar/http-digest-header",
-  "version": "2.3.1-0",
+  "name": "@interop/http-digest-header",
+  "version": "2.3.2",
   "description": "Minimal isomorphic library (Node.js and browser) for creating and verifying Digest headers for HTTP Signatures",
   "license": "BSD-3-Clause",
   "scripts": {
@@ -10,16 +10,31 @@
     "coverage": "cross-env NODE_ENV=test c8 npm test",
     "coverage-ci": "cross-env NODE_ENV=test c8 --reporter=lcovonly --reporter=text-summary --reporter=text npm test",
     "coverage-report": "c8 report",
+    "build": "tsc",
     "lint": "eslint ."
   },
   "type": "module",
   "exports": "./lib/index.js",
+  "types": "./types/index.d.ts",
   "browser": {
     "./lib/util.js": "./lib/util-browser.js"
   },
+  "react-native": {
+    "./lib/util.js": "./lib/util-browser.js",
+    "./lib/digest.js": "./lib/digest-reactnative.js"
+  },
   "files": [
-    "lib/**/*.js"
+    "lib/**/*.js",
+    "types/**/*.d.ts"
   ],
+  "peerDependencies": {
+    "expo-crypto": ">=13"
+  },
+  "peerDependenciesMeta": {
+    "expo-crypto": {
+      "optional": true
+    }
+  },
   "devDependencies": {
     "c8": "^10.1.3",
     "chai": "^4.3.6",
@@ -37,11 +52,12 @@
     "karma-webpack": "^5.0.0",
     "mocha": "^11.7.4",
     "mocha-lcov-reporter": "^1.3.0",
+    "typescript": "^6.0.3",
     "webpack": "^5.73.0"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/digitalbazaar/http-digest-header"
+    "url": "https://github.com/interop-alliance/http-digest-header"
   },
   "keywords": [
     "http",
