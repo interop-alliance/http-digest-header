@@ -1,5 +1,6 @@
 # HTTP Digest Header Library _(@interop/http-digest-header)_
 
+[![Node.js CI](https://github.com/interop-alliance/http-digest-header/workflows/CI/badge.svg)](https://github.com/interop-alliance/http-digest-header/actions?query=workflow%3A%22CI%22)
 [![CI](https://github.com/interop-alliance/http-digest-header/actions/workflows/ci.yml/badge.svg)](https://github.com/interop-alliance/http-digest-header/actions/workflows/ci.yml)
 
 > JavaScript library (Node.js, browser and React Native) for creating and
@@ -17,7 +18,7 @@
 ## Background
 
 **FORKED FROM**: https://github.com/digitalbazaar/http-digest-header to provide
-support for React Native, and add TypeScript types.
+support for React Native and add TypeScript types.
 
 - For React Native use: the `expo-crypto` peer dependency is required (see
   [Usage in React Native](#usage-in-react-native)).

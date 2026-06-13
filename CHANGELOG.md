@@ -1,6 +1,6 @@
-# @digitalbazaar/http-digest-header Changelog
+# @interop/http-digest-header Changelog
 
-## Unreleased - TBD
+## 3.0.0 - 2026-06-13
 
 ### Changed
 
