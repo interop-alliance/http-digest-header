@@ -4,28 +4,41 @@
   "description": "Minimal isomorphic library (Node.js and browser) for creating and verifying Digest headers for HTTP Signatures",
   "license": "BSD-3-Clause",
   "scripts": {
-    "test": "npm run test-node",
-    "test-node": "cross-env NODE_ENV=test mocha --preserve-symlinks -t 10000 --require test/test-mocha.js test/**/*.spec.js",
-    "test-karma": "karma start test/karma.conf.cjs",
-    "coverage": "cross-env NODE_ENV=test c8 npm test",
-    "coverage-ci": "cross-env NODE_ENV=test c8 --reporter=lcovonly --reporter=text-summary --reporter=text npm test",
-    "coverage-report": "c8 report",
-    "build": "tsc",
-    "lint": "eslint ."
+    "build": "pnpm run clear && tsc",
+    "clear": "rimraf dist/*",
+    "dev": "vite",
+    "fix": "eslint --fix src test && pnpm run format",
+    "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\" \"*.md\"",
+    "lint": "eslint src test",
+    "prepare": "pnpm run build",
+    "rebuild": "pnpm run clear && pnpm run build",
+    "test": "pnpm run fix && pnpm run lint && pnpm run test:node && pnpm run test:browser",
+    "test:browser": "playwright test",
+    "test:node": "vitest run",
+    "test:coverage": "vitest run --coverage"
   },
   "type": "module",
-  "exports": "./lib/index.js",
-  "types": "./types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "sideEffects": false,
   "browser": {
-    "./lib/util.js": "./lib/util-browser.js"
+    "./dist/util.js": "./dist/util-browser.js"
   },
   "react-native": {
-    "./lib/util.js": "./lib/util-browser.js",
-    "./lib/digest.js": "./lib/digest-reactnative.js"
+    "./dist/util.js": "./dist/util-browser.js",
+    "./dist/digest.js": "./dist/digest-reactnative.js"
   },
   "files": [
-    "lib/**/*.js",
-    "types/**/*.d.ts"
+    "dist",
+    "README.md",
+    "LICENSE.md"
   ],
   "peerDependencies": {
     "expo-crypto": ">=13"
@@ -36,24 +49,19 @@
     }
   },
   "devDependencies": {
-    "c8": "^10.1.3",
-    "chai": "^4.3.6",
-    "cross-env": "^10.1.0",
-    "eslint": "^8.57.1",
-    "eslint-config-digitalbazaar": "^5.2.0",
-    "eslint-plugin-jsdoc": "^50.8.0",
-    "eslint-plugin-unicorn": "^56.0.1",
-    "karma": "^6.3.20",
-    "karma-chai": "^0.1.0",
-    "karma-chrome-launcher": "^3.1.1",
-    "karma-mocha": "^2.0.1",
-    "karma-mocha-reporter": "^2.2.5",
-    "karma-sourcemap-loader": "^0.3.8",
-    "karma-webpack": "^5.0.0",
-    "mocha": "^11.7.4",
-    "mocha-lcov-reporter": "^1.3.0",
-    "typescript": "^6.0.3",
-    "webpack": "^5.73.0"
+    "@eslint/js": "^10.0.1",
+    "@playwright/test": "^1.60.0",
+    "@types/node": "^25.9.3",
+    "@vitest/coverage-v8": "^4.1.8",
+    "eslint": "^10.5.0",
+    "eslint-config-prettier": "^10.1.8",
+    "globals": "^17.6.0",
+    "prettier": "^3.8.4",
+    "rimraf": "^6.1.3",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.61.0",
+    "vite": "^8.0.16",
+    "vitest": "^4.1.8"
   },
   "repository": {
     "type": "git",
@@ -70,17 +78,15 @@
     "url": "https://digitalbazaar.com/"
   },
   "bugs": {
-    "url": "https://github.com/digitalbazaar/http-digest-header/issues"
+    "url": "https://github.com/interop-alliance/http-digest-header/issues"
   },
-  "homepage": "https://github.com/digitalbazaar/http-digest-header",
+  "homepage": "https://github.com/interop-alliance/http-digest-header",
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
   "engines": {
-    "node": ">=20"
+    "node": ">=24.0"
   },
-  "c8": {
-    "reporter": [
-      "lcov",
-      "text-summary",
-      "text"
-    ]
-  }
+  "packageManager": "pnpm@11.5.0"
 }
